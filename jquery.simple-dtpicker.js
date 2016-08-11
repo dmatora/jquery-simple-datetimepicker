@@ -955,6 +955,10 @@
 						func(handler, targetDate);
 					}
 
+					if ($picker.data("callOnSelected")){
+						$picker.data("callOnSelected").call(targetDate);
+					}
+
 					if ($picker.data("dateOnly") === true && $picker.data("isInline") === false && $picker.data("closeOnSelected")){
 						// Close a picker
 						ActivePickerId = -1;
@@ -1142,6 +1146,7 @@
 		/* Set options data to container object  */
 		if (opt.inputObjectId != null) $picker.data("inputObjectId", opt.inputObjectId);
 		if (opt.timeOnly) opt.todayButton = false;
+		$picker.data("callOnSelected", opt.callOnSelected);
 		$picker.data("timeOnly", opt.timeOnly);
 		$picker.data("dateOnly", opt.dateOnly);
 		$picker.data("pickerId", PickerObjects.length);
